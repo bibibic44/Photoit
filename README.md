@@ -96,7 +96,7 @@
   - 작가: 활동 지역을 추가로 선택할 수 있습니다.
   - 일반 회원으로 가입을 했더라도 마이페이지에서 작가 회원으로 업그레이드할 수 있습니다.
 
-![Untitled](./assets/Untitled 12.png)
+![Untitled](README.assets/Untitled 12-16339514202581.png)
 
 ![image-20211011193840206](README.assets/image-20211011193840206.png)
 
@@ -106,14 +106,14 @@
 
 - 로그인 페이지입니다.
 
-![Untitled](./assets/Untitled 15.png)
+![Untitled](README.assets/Untitled 15-16339514303532.png)
 
 ### 프로필 아이콘
 
 - 로그인 / 로그아웃 여부에 따라 메뉴가 드롭다운으로 나타납니다.
 - 프로필 아이콘은 유저가 회원가입 시 선택한 사진으로 적용되며, 사진을 선택하지 않았을 경우 기본 아이콘이 적용됩니다.
 
-![Untitled](./assets/Untitled 18.png)
+![Untitled](README.assets/Untitled 18-16339514338733.png)
 
 ### 마이페이지
 
@@ -121,7 +121,7 @@
 
     - 회원 정보 수정: 닉네임, 비밀번호 변경, 작가회원 전환을 지원합니다.
 
-    ![Untitled](./assets/Untitled 21.png)
+    ![Untitled](README.assets/Untitled 21-16339514370374.png)
 
 ### 마이스튜디오
 
@@ -144,7 +144,7 @@
 - 찜한 작가들을 모아볼 수 있는 리스트입니다.
 - 작가가 자신의 BEST 3 사진을 선정했을 경우 아래 리스트에 BEST 3 사진이 함께 보입니다.
 
-![Untitled](./assets/Untitled 62.png)
+![Untitled](README.assets/Untitled 62-16339514432735.png)
 
 ### 검색 결과
 
@@ -155,7 +155,7 @@
 
     ![image-20211011195429988](README.assets/image-20211011195429988.png)
 
-    ![Untitled](./assets/Untitled 70.png)
+    ![Untitled](README.assets/Untitled 70-16339514500036.png)
 
 ### 검색바 
 
@@ -163,15 +163,15 @@
 - 태그(# 태그이름)의 자동완성이 가능합니다.
   - 서버에서 태그 리스트를 전송해 주면 프론트엔드에서 사용자 입력에 따른 자동완성 기능을 구현합니다.
 
-![Untitled](./assets/Untitled 71.png)
+![Untitled](README.assets/Untitled 71-16339514539317.png)
 
 ### 쪽지
 
 - 작가 회원과 일반 회원이 쪽지를 주고 받을 수 있습니다.
 
-![Untitled](./assets/Untitled 82.png)
+![Untitled](README.assets/Untitled 82-16339514582648.png)
 
-![Untitled](./assets/Untitled 83.png)
+![Untitled](README.assets/Untitled 83-16339514683439.png)
 
 ## 4. CI / CD
 
