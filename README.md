@@ -1,593 +1,250 @@
 # README.md
 
-# **Photo-it**
+# 0. 프로젝트 소개
 
-## **Description**
+**Photo-it(포토잇)**은 사진작가와 예비 고객을 이어주는 매칭 플랫폼입니다.
 
-사진 작가 - 모델이 컨택할 수 있도록 도와주는 플랫폼 입니다. 사진 작가는 자신의 사진을 포트폴리오 처럼 올릴 수 있고, 모델들은 그 사진들을 보며 마음에 드는 작가와 컨택할 수 있습니다. 태그, 작가, 작가 위치 별 검색이 가능하고 마음에 드는 작가를 찜할 수 있습니다.
+사진 작가는 자신의 사진을 📜포트폴리오처럼 관리할 수 있고, 사진 작가가 필요한 예비 고객들은 업로드된 사진을 보며 마음에 드는 📸사진 작가와 컨택할 수 있습니다.
 
-## **Environment & Tech Stack**
+태그, 작가 닉네임, 작가의 활동 지역에 따른 검색이 가능하며, 마음에 드는 작가를 찜해둘 수도 있습니다.
+
+### 개발 기간
+
+2021.07.05 ~ 2021.08.20
+
+### 와이어 프레임
+
+![image-20211011184733105](README.assets/image-20211011184733105-16339457093301.png)
+
+![image-20211011184813591](README.assets/image-20211011184813591.png)
+
+### ERD
+
+![image-20211011190426627](README.assets/image-20211011190426627.png)
+
+
+
+## 1. 실행 방법
+
+- `로컬에서 실행` 하기 위해서는 프론트엔드와 백엔드를 동시에 실행해야 합니다.
+
+  ``` bash
+  -- 프론트엔드 실행
+  cd frontend/
+  npm i
+  npm run serv
+  
+  cd ..
+  
+  -- 백엔드 실행
+  cd backend/
+  인텔리제이에서 gradle 실행
+  ```
+
+## 2. 개발환경
+
+### 기술 스택
 
 - BackEnd(IntelliJ) : Spring boot, JPA, Redis, MySql, Jenkins, NginX, Docker, AWS
 - FrontEnd(NodeJS) : Vue.js
 
 ![Untitled](./assets/Untitled.png)
 
-## Requirements
+#### Requirements
 
 - IDE : IntelliJ, Visual Code
 - module
     - frontend : vue-cli
 
-## **Participants**
+### 협업툴
 
-- 박세령 : backend
-- 김상재 : frontend
-- 김지현 : frontend, backend
-- 신한규 : DB, frontend, backend
-- 이은총 : frontend
-- 이희정 : server, backend, frontend
+- **Jira**
 
-## **Service URL**
+  애자일 협업, 스케쥴 관리
 
-**📌 https://i5a108.p.ssafy.io**
+- **Notion**
 
-## **Usage**
+  문서화, 정보공유, 회의록 정리
 
-> 메인페이지 (https://i5a108.p.ssafy.io)
+  https://www.notion.so/QHD-4K-c81b4789f1b9437e832b2e73b20b22d2
 
-- Page
+- **Git**
 
-    ![Untitled](./assets/Untitled 1.png)
+  - 코드 상태 관리
+  - 커밋 메세지 컨벤션 사용, 브랜치 네이밍 규칙 사용하여 각자 독립된 브랜치에서 개발
 
-- 접근 방법 : 서비스 URL에 접근 시 가장 처음 보이는 페이지
-- 주요 기능: 검색, 조회수가 높은 태그 4개의 사진을 최신순으로 n개 확인 가능, 디테일(+ 찜)
-- Service Functions
-    - locationList() : 저장된 지역들을 불러오기
-        - 요청 : 없음
-        - 응답
-            - MainPageLocationRes
+## 3. 기능
 
-                ![Untitled](./assets/Untitled 2.png)
+### 메인페이지, 디테일 Modal
 
-            - 응답 코드
+- 스크롤에 반응하는 인터랙티브 웹 페이지
+- 태그별로 최대 20여장의 사진이 캐러셀로 보여집니다.
+- 사진을 누르면 모달로 사진을 선택하여 볼 수 있습니다. 
+  - 모달에서는 작가의 다른 사진을 확인할 수 있습니다.
+  - 작가의 스튜디오로 이동하거나 작가 찜하기, 해제하기도 가능합니다.
+  - 사진을 누르면 새로운 탭으로 원본 사진을 볼 수 있습니다.
 
-                ![Untitled](./assets/Untitled 3.png)
+![MainPage(미완)](README.assets/MainPage(미완).gif)
 
-    - tagList() : 사진 태그들을 가져오기
-        - 요청 : 없음
-        - 응답
-            - MainPageTagPhotoRes
+![image-20211011193638763](README.assets/image-20211011193638763.png)
 
-                ![Untitled](./assets/Untitled 4.png)
+![image-20211011194608952](README.assets/image-20211011194608952.png)
 
-            - 응답 코드
+### 회원가입
 
-                ![Untitled](./assets/Untitled 5.png)
+- 작가 / 일반 회원으로 나뉘어 회원 가입을 할 수 있습니다.
+  - 작가: 활동 지역을 추가로 선택할 수 있습니다.
+  - 일반 회원으로 가입을 했더라도 마이페이지에서 작가 회원으로 업그레이드할 수 있습니다.
 
-    - mainPageContents() : 메인콘텐츠(사진태그,썸네일, 닉네임) 가져오기
-        - 요청 : 없음
-        - 응답
-            - MainPageTagPhotoRes
+![Untitled](./assets/Untitled 12.png)
 
-                ![Untitled](./assets/Untitled 6.png)
+![image-20211011193840206](README.assets/image-20211011193840206.png)
 
-            - 응답 코드
 
-                ![Untitled](./assets/Untitled 7.png)
 
-    - photoDetail() : 사진 디테일 콘텐츠(원본사진 경로, 원본사진 태그List, 찜 여부, [썸네일경로, 사진ID] N개
-        - 요청 : 없음
-        - 응답
-            - MainPagePhotoDetailRes
+### 로그인
 
-                ![Untitled](./assets/Untitled 8.png)
+- 로그인 페이지입니다.
 
-            - 응답 코드
+![Untitled](./assets/Untitled 15.png)
 
-                ![Untitled](./assets/Untitled 9.png)
+### 프로필 아이콘
 
-    - userProfile() : 프로필 사진, 닉네임 가져오기
-        - 요청 : 없음
-        - 응답
-            - MainPageProfileRes
+- 로그인 / 로그아웃 여부에 따라 메뉴가 드롭다운으로 나타납니다.
+- 프로필 아이콘은 유저가 회원가입 시 선택한 사진으로 적용되며, 사진을 선택하지 않았을 경우 기본 아이콘이 적용됩니다.
 
-                ![Untitled](./assets/Untitled 10.png)
+![Untitled](./assets/Untitled 18.png)
 
-            - 응답 코드
+### 마이페이지
 
-                ![Untitled](./assets/Untitled 11.png)
+- 회원 정보 수정, 회원 탈퇴가 지원되는 페이지입니다.
 
-> 회원가입 (https://i5a108.p.ssafy.io/signup)
-
-- Page
-
-    ![Untitled](./assets/Untitled 12.png)
-
-- 접근 방법 : 메인페이지 오른쪽 상단의 프로필 아이콘을 눌러 나오는 드롭다운에서 회원가입 선택
-- Service Functions
-    - signUp() : 회원가입
-        - 요청(UserReq)
-
-            ![Untitled](./assets/Untitled 13.png)
-
-        - 응답
-            - BaseResponseBody
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 14.png)
-
-> 로그인 (https://i5a108.p.ssafy.io/login)
-
-- Page
-
-    ![Untitled](./assets/Untitled 15.png)
-
-- 접근 방법 : 메인페이지 오른쪽 상단의 프로필 아이콘을 눌러 나오는 드롭다운에서 로그인 선택
-- Service Functions
-    - signin() : 로그인
-        - 요청(UserReq)
-
-            ![Untitled](./assets/Untitled 13.png)
-
-        - 응답
-            - UserLoginPostRes
-
-                ![Untitled](./assets/Untitled 16.png)
-
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 17.png)
-
-> 로그아웃
-
-- Page
-
-    ![Untitled](./assets/Untitled 18.png)
-
-- 접근 방법 : 로그인 후, 오른쪽 상단의 프로필 아이콘을 눌러 나오는 드롭다운에서 로그아웃 선택
-- Service Functions
-    - signOut() : 로그아웃
-        - 요청 :
-
-            ![Untitled](./assets/Untitled 19.png)
-
-        - 응답
-            - BaseResponseBody
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 20.png)
-
-> 마이페이지 (https://i5a108.p.ssafy.io/mypage)
-
-- Page
+    - 회원 정보 수정: 닉네임, 비밀번호 변경, 작가회원 전환을 지원합니다.
 
     ![Untitled](./assets/Untitled 21.png)
 
-- 접근 방법 : 로그인 후 오른쪽 상단의 프로필 아이콘을 눌러 나오는 드롭다운에서 마이페이지 선택
-- 주요 기능: 회원 정보 확인 및 수정
-- Service Functions
-    - getProfile() : 마이페이지 진입시 해당 회원의 정보를 모두 불러온다
-        - 요청
+### 마이스튜디오
 
-            ![Untitled](./assets/Untitled 22.png)
+- 작가가 업로드한 사진을 볼 수 있습니다.
+  - 상단바를 통해 작가 찜하기, 해제하기 / 쪽지 보내기 등을 할 수 있습니다.
+- 상단 캐러셀에서 작가가 뽑은 자신의 BEST 3 사진을 확인할 수 있습니다.
 
-        - 응답
-            - MyPageGetRes
+![image-20211011194637822](README.assets/image-20211011194637822.png)
 
-                ![Untitled](./assets/Untitled 23.png)
 
-            - 응답 코드
 
-                ![Untitled](./assets/Untitled 24.png)
+### 마이 스튜디오 Edit
 
-    - updateProfile : 회원정보 수정
-        - 요청
+![image-20211011194815624](README.assets/image-20211011194815624.png)
 
-            ![Untitled](./assets/Untitled 25.png)
 
-        - 응답
-            - UserLoginPostRes
 
-                ![Untitled](./assets/Untitled 26.png)
+### 찜 목록
 
-            - 응답코드
+- 찜한 작가들을 모아볼 수 있는 리스트입니다.
+- 작가가 자신의 BEST 3 사진을 선정했을 경우 아래 리스트에 BEST 3 사진이 함께 보입니다.
 
-                ![Untitled](./assets/Untitled 27.png)
+![Untitled](./assets/Untitled 62.png)
 
-    - deleteUser() : 회원 탈퇴
-        - 요청
+### 검색 결과
 
-            ![Untitled](./assets/Untitled 28.png)
+- 검색바를 통해 태그, 작가를 검색한 결과를 보여줍니다.
 
-        - 응답
-            - BaseResponseBody
-            - 응답코드
+    - 동적 라우팅을 통해 뒤로가기를 하더라도 기존 정보를 계속 볼 수 있습니다.
+    - Vue의 라이프 사이클 API를 사용하여 새로고침을 해도 정보가 소실되지 않습니다.
 
-                ![Untitled](./assets/Untitled 29.png)
-
-    - upgradePhotographer() : 작가로 업그레이드
-        - 요청
-
-            ![Untitled](./assets/Untitled 28.png)
-
-        - 응답
-            - BaseResponseBody
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 30.png)
-
-    - isPasswordRight() : 비밀번호 재확인
-        - 요청
-
-            ![Untitled](./assets/Untitled 25.png)
-
-        - 응답
-            - BaseResponseBody
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 31.png)
-
-    - nicknameDuplicateCheck() : 닉네임 중복체크
-        - 요청
-
-            ![Untitled](./assets/Untitled 25.png)
-
-        - 응답
-            - BaseResponseBody
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 32.png)
-
-    - editProfilePhoto() : 프로필사진 수정
-        - 요청
-
-            ![Untitled](./assets/Untitled 25.png)
-
-        - 응답
-            - BaseResponseBody
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 33.png)
-
-> 마이스튜디오 (https://i5a108.p.ssafy.io/mystudio)
-
-- Page
-
-    ![Untitled](./assets/Untitled 34.png)
-
-- 접근 방법
-    - 작가일 때, 로그인 후 오른쪽 상단의 프로필 아이콘을 눌러 나오는 드롭다운에서 로그아웃 선택 또는 작가 검색,찜목록에서 해달 작가 클릭
-    - 일반인일 때, 로그인 후 작가 검색,찜목록에서 해달 작가 클릭
-- 주요 기능: 사진 작가가 올린 전체 사진 확인 가능, 애니메이션과 자체 정렬 방식이 적용된 페이지 레이아웃 제공, 사진 작가가 뽑은 베스트 사진 3 캐러셀로 확인 가능
-- Service Functions
-    - getPgProfile() : 작가 프로필(한줄 프로필, 지역) 받아오기
-        - 요청 : 쿼리  /{nickname}
-        - 응답
-            - StudioPgProfileResBody
-
-                ![Untitled](./assets/Untitled 35.png)
-
-            - 응답 코드
-
-                ![Untitled](./assets/Untitled 36.png)
-
-    - showCalendar() : 일정 보여주기
-        - 요청 : 쿼리  /{nickname}
-        - 응답
-            - StudioCalendarResBody
-
-                ![Untitled](./assets/Untitled 37.png)
-
-            - 응답 코드
-
-                ![Untitled](./assets/Untitled 38.png)
-
-    - addCalendar() : 일정 추가하기
-        - 요청
-
-            ![Untitled](./assets/Untitled 39.png)
-
-        - 응답
-            - BaseResponseBody(T/F)
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 40.png)
-
-    - deleteCalendar() : 일정 삭제하기
-        - 요청
-
-            ![Untitled](./assets/Untitled 39.png)
-
-        - 응답
-            - BaseResponseBody(T/F)
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 41.png)
-
-    - getBestPhotos() : 베스트 3 사진 받아오기
-        - 요청 : 쿼리  /{nickname}
-        - 응답
-            - StudioGetPhotosResBody
-
-                ![Untitled](./assets/Untitled 42.png)
-
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 43.png)
-
-    - getAllPgPhotos() : 작가 전체사진 받아오기
-        - 요청 : 쿼리  /{nickname}
-        - 응답
-            - StudioGetPhotosResBody
-
-                ![Untitled](./assets/Untitled 42.png)
-
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 44.png)
-
-> 마이스튜디오 Edit ([https://i5a108.p.ssafy.io/mystudioedit/{닉네임}](https://i5a108.p.ssafy.io/mystudioedit/%ED%95%9C%EB%80%A8))
-
-- Page
-
-    ![Untitled](./assets/Untitled 45.png)
-
-- 접근 방법 : 프로필 아이콘 드롭다운의 Edit 버튼을 클릭
-- 주요 기능: 마이스튜디오에 업로드할 사진 추가, 기존 업로드된 사진 삭제, 베스트 사진 3 선정 및 취소
-- Service Functions
-    - studioAuth() : 마이스튜디오 본인확인
-        - 요청 : 쿼리  /{nickname}
-        - 응답
-            - BaseResponseBody
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 46.png)
-
-    - getPgProfile() : 작가 프로필 받아오기
-        - 요청
-
-            ![Untitled](./assets/Untitled 47.png)
-
-        - 응답
-            - StudioEditPgProfileResponseBody
-
-                ![Untitled](./assets/Untitled 48.png)
-
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 49.png)
-
-    - getBestPhoto() : 베스트3 사진 받아오기
-        - 요청
-
-            ![Untitled](./assets/Untitled 50.png)
-
-        - 응답
-            - StudioEditPhotoResponseBody
-
-                ![Untitled](./assets/Untitled 51.png)
-
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 52.png)
-
-    - getPgPhoto() : 작가 전체 사진 받아오기
-        - 요청
-
-            ![Untitled](./assets/Untitled 53.png)
-
-        - 응답
-            - StudioEditPhotoResponseBody
-
-                ![Untitled](./assets/Untitled 51.png)
-
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 54.png)
-
-    - addBestPhoto() : 베스트3 사진 추가하기
-        - 요청(StudioEditPhotoSelectReq)
-
-            ![Untitled](./assets/Untitled 55.png)
-
-        - 응답
-            - BaseResponseBody
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 56.png)
-
-    - updateBestPhoto() : 베스트3 사진 수정하기
-        - 요청(StudioEditPhotoSelectReq)
-
-            ![Untitled](./assets/Untitled 55.png)
-
-        - 응답
-            - BaseResponseBody
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 57.png)
-
-    - delBestPhoto() : 베스트3 사진 삭제하기
-        - 요청(StudioEditPhotoSelectReq)
-
-            ![Untitled](./assets/Untitled 55.png)
-
-        - 응답
-            - BaseResponseBody
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 58.png)
-
-    - addPgPhoto() : 작가 전체 사진 추가하기
-        - 요청(StudioEditPhotoUploadReq)
-
-            ![Untitled](./assets/Untitled 59.png)
-
-        - 응답
-            - BaseResponseBody
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 60.png)
-
-    - delPgPhoto() : 작가 전체 사진 중 하나 삭제하기
-        - 요청(StudioEditPhotoSelectReq)
-
-            ![Untitled](./assets/Untitled 55.png)
-
-        - 응답
-            - BaseResponseBody
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 61.png)
-
-> 찜 (https://i5a108.p.ssafy.io/fav)
-
-- Page
-
-    ![Untitled](./assets/Untitled 62.png)
-
-- 접근 방법 : 로그인 후 오른쪽 상단의 프로필 아이콘을 눌러 나오는 드롭다운에서 찜목록 선택
-- 주요 기능: 작가의 마이스튜디오, 사진 디테일에서 원하는 작가를 찜하면 찜목록 페이지에서 확인 가능, 작가와 작가의 베스트 사진 3 모아보기 가능
-- Service Functions
-    - addFav() : 찜 추가하기
-        - 요청
-
-            ![Untitled](./assets/Untitled 63.png)
-
-        - 응답
-            - BaseResponseBody(T/F)
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 64.png)
-
-    - deleteFav() : 찜 해제하기
-        - 요청
-
-            ![Untitled](./assets/Untitled 63.png)
-
-        - 응답
-            - BaseResponseBody(T/F)
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 65.png)
-
-    - checkFav() : 사진 확대 시 작가 이름 옆의 찜 확인
-        - 요청
-
-            ![Untitled](./assets/Untitled 66.png)
-
-        - 응답
-            - BaseResponseBody(T/F)
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 67.png)
-
-    - getFavList() : 찜목록 불러오기
-        - 요청 : 쿼리  /{nickname}
-        - 응답
-            - FavResBody
-
-                ![Untitled](./assets/Untitled 68.png)
-
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 69.png)
-
-> 검색
-
-- Page
+    ![image-20211011195429988](README.assets/image-20211011195429988.png)
 
     ![Untitled](./assets/Untitled 70.png)
 
-    ![Untitled](./assets/Untitled 71.png)
+### 검색바 
 
-- 접근 방법 : 메인페이지, 마이페이지, 찜목록 등의 상단 nav바에서 검색어 입력
-- 주요 기능: 태그 검색 및 사진 디테일(+ 찜), 작가 검색 및 작가의 마이스튜디오 이동, 태그 자동 완성
-- Service Functions
-    - searchTagLocation() : 해당 지역,태그 사진 가져오기
-        - 요청
+- 태그, 작가를 지역별로 검색할 수 있는 검색바 컴포넌트입니다.
+- 태그(# 태그이름)의 자동완성이 가능합니다.
+  - 서버에서 태그 리스트를 전송해 주면 프론트엔드에서 사용자 입력에 따른 자동완성 기능을 구현합니다.
 
-            ![Untitled](./assets/Untitled 72.png)
+![Untitled](./assets/Untitled 71.png)
 
-            ![Untitled](./assets/Untitled 73.png)
+### 쪽지
 
-        - 응답
-            - SearchTagLocationRes
+- 작가 회원과 일반 회원이 쪽지를 주고 받을 수 있습니다.
 
-                ![Untitled](./assets/Untitled 74.png)
+![Untitled](./assets/Untitled 82.png)
 
-            - 응답코드
+![Untitled](./assets/Untitled 83.png)
 
-                ![Untitled](./assets/Untitled 75.png)
+## 4. CI / CD
 
-    - searchPg() : 해당 지역, 작가 검색
-        - 요청
+**BACKEND - [README.md](./backend/readme.md)** 
 
-            ![Untitled](./assets/Untitled 76.png)
+## 5. API
 
-            ![Untitled](./assets/Untitled 77.png)
+https://docs.google.com/spreadsheets/d/1cMytNr3j-KLNRIuaSeBt3-kl7Mn1lQobTHemsTr9cD0/edit#gid=0
 
-        - 응답
-            - SearchPgLocationRes
+## 5. 역할
 
-                ![Untitled](./assets/Untitled 78.png)
+- 박세령
 
-            - 응답코드
+  - 팀장
+  - Back-End
+  - user(회원가입, 로그인) REST api
+  - 마이페이지 REST api
 
-                ![Untitled](./assets/Untitled 79.png)
+- 김상재
 
-    - searchMyStudioTag() : 마이스튜디오 내 태그검색
-        - 요청
-        - 응답
-            - SearchMyStudioTagRes
+  - Front-End (Vue.js, JS, CSS)
+  - 회원가입
+  - 로고 디자인
+  - 마이 스튜디오
 
-                ![Untitled](./assets/Untitled 80.png)
+- 김지현
 
-            - 응답코드
+  - Back-End
+  - 찜 기능 REST api
+  - 마이 스튜디오 REST api
 
-                ![Untitled](./assets/Untitled 81.png)
+- 신한규
 
-> 쪽지 ([https://i5a108.p.ssafy.io/chat/roomlist](https://i5a108.p.ssafy.io/chat/roomlist))
+  - DB
+    - DB 설계
+    - ERD, S3 지원 등
+  - Full-Stack
+  - [Front-End]
+    - 쪽지
+  - [Back-End]
+    - 메인페이지 REST api
+    - 검색 결과 REST api
 
-- Page
+- 이은총
 
-    ![Untitled](./assets/Untitled 82.png)
+  - Front-End(Vue.js, JS, CSS)
+  - 메인페이지
+  - 로그인
+  - 프로필 아이콘
+  - 마이 스튜디오 Edit
+  - 찜 목록
+  - 검색 결과
+  - 검색바
+  - 디테일 Modal
+  - 기타 CSS 작업
 
-    ![Untitled](./assets/Untitled 83.png)
+- 이희정
 
-- 접근 방법 : 작가 스튜디오 상단의 비행기 아이콘을 클릭 또는 오른쪽 상단 프로필 아이콘을 눌러 나오는 드롭다운에서 쪽지함 선택
-- 주요 기능: 쪽지함, 쪽지 수신 및 발신
-- Service Functions
-    - createRoom() : 채팅 roomId, 내용 받기
-        - 요청(ChatUsersReq)
+  - DevOps
 
-            ![Untitled](./assets/Untitled 84.png)
+    -  CI/CD
 
-        - 응답
-            - ChatRoomRes
+  - Full-Stack
 
-                ![Untitled](./assets/Untitled 85.png)
+  - [Front-End]
 
-            - 응답코드
+    - 마이 스튜디오 Edit
+    - 마이페이지
+    - 메인페이지 Footer
 
-                ![Untitled](./assets/Untitled 86.png)
+  - [Back-End]
 
-    - roomList() : 사용자의 채팅 목록 불러오기
-        - 요청(ChatReq)
+    - 사용자 입력 이미지 데이터 관리(S3)
+    - 마이스튜디오 Edit REST api
 
-            ![Untitled](./assets/Untitled 87.png)
-
-        - 응답
-            - ChatRoomRes
-
-                ![Untitled](./assets/Untitled 85.png)
-
-            - 응답코드
-
-                ![Untitled](./assets/Untitled 88.png)
-
-## How to work Server
-
-**👉 BACKEND - [README.md](./backend/readme.md) 👈**
-
+    
